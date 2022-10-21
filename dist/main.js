@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("class newDo {\n    constructor(task) {\n        this.task = task;\n    }\n};\n\nlet do1 = new newDo('lunch');\nlet do2 = new newDo('dinner');\n\nconsole.log(do1.task);\nconsole.log(do2.task);\n\n//# sourceURL=webpack://todolist/./src/index.js?");
+eval("const divContent = document.getElementById('content');\nconst addButton = document.createElement('button');\naddButton.innerText = 'Add Task';\ndivContent.append(addButton);\n\naddButton.addEventListener('click', () => {\n    const newTask = document.createElement('input');\n    newTask.setAttribute('type', 'text');\n    newTask.setAttribute('placeholder', 'Add new task');\n    divContent.append(newTask);\n    newTask.addEventListener('keypress', (e) => {\n        if (e.key === 'Enter') {\n            const newTaskList = document.createElement('li');\n            newTaskList.innerText = newTask.value;\n            divContent.append(newTaskList);\n        }\n    });\n});\n\n\n\nclass newDo {\n    constructor(task) {\n        this.task = task;\n    }\n};\n\nlet do1 = new newDo('lunch');\nlet do2 = new newDo('dinner');\n\nconsole.log(do1.task);\nconsole.log(do2.task);\n\n//# sourceURL=webpack://todolist/./src/index.js?");
 
 /***/ })
 
