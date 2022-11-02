@@ -3,17 +3,55 @@ const addButton = document.createElement('button');
 addButton.innerText = 'Add Task';
 divContent.append(addButton);
 
+
 addButton.addEventListener('click', () => {
+
+    function appendList () {
+        const taskList = document.createElement('li');
+        taskList.innerText = newTask.value;
+        divContent.append(taskList);
+    
+        newTask.remove();
+        addTask.remove();
+        cancelTask.remove();
+    }
+
     const newTask = document.createElement('input');
-    newTask.setAttribute('type', 'text');
-    newTask.setAttribute('placeholder', 'Add new task');
-    divContent.append(newTask);
-    newTask.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            const newTaskList = document.createElement('li');
-            newTaskList.innerText = newTask.value;
-            divContent.append(newTaskList);
+    // write code to do the following thing: while the newTask is not validated (enter key), the addButton is disabled
+    // and when the newTask is validated, the addButton is enabled
+
+    const addTask = document.createElement('button');
+    addTask.innerText = 'Add';
+
+    const cancelTask = document.createElement('button');
+    cancelTask.innerText = 'Cancel';
+
+    divContent.append(newTask, addTask, cancelTask);
+
+    newTask.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            addButton.disabled = false;
+            appendList();
+        } else {
+            addButton.disabled = true;
         }
+    });
+
+    addTask.addEventListener('click', () => {
+        // write code to do the following thing: when the addTask is clicked, the newTask is added to the list
+        // and the newTask, addTask, and cancelTask are removed from the divContent
+        appendList();
+        addButton.disabled = false;
+    });
+
+
+    cancelTask.addEventListener('click', () => {
+        // write code to do the following thing: when the cancelTask is clicked, the newTask, addTask, and cancelTask are removed from the divContent
+        newTask.remove();
+        addTask.remove();
+        cancelTask.remove();
+
+        addButton.disabled = false;
     });
 });
 
