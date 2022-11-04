@@ -14,6 +14,8 @@ addButton.addEventListener('click', () => {
     function appendList () {
         const taskList = document.createElement('li');
         taskList.innerText = newTask.value;
+        // add the date to the task
+        taskList.innerText += ` ${new Date().toLocaleString()}`;
         taskBlock.append(taskList);
 
         // add a little cross next to the task to indicate that the task can be removed
