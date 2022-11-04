@@ -3,13 +3,18 @@ const addButton = document.createElement('button');
 addButton.innerText = 'Add Task';
 divContent.append(addButton);
 
+const taskBlock = document.createElement('ul');
+divContent.append(taskBlock);
+
 
 addButton.addEventListener('click', () => {
+
+    addButton.disabled = true;
 
     function appendList () {
         const taskList = document.createElement('li');
         taskList.innerText = newTask.value;
-        divContent.append(taskList);
+        taskBlock.append(taskList);
     
         newTask.remove();
         addTask.remove();
@@ -26,7 +31,10 @@ addButton.addEventListener('click', () => {
     const cancelTask = document.createElement('button');
     cancelTask.innerText = 'Cancel';
 
-    divContent.append(newTask, addTask, cancelTask);
+    //divContent.append(newTask, addTask, cancelTask);
+    // append newTask, addTask, and cancelTask under addButton
+    addButton.after(newTask, addTask, cancelTask);
+
 
     newTask.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
